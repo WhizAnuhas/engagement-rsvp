@@ -3,240 +3,302 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Atharva & Anubhuti | Royal Wedding Invitation</title>
+<title>Anuhas & Sofiya | Engagement Ceremony Invitation</title>
 
 <!-- GOOGLE FONTS -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&600&700&display=swap" rel="stylesheet">
 
 <style>
 /* =====================================================
-   GLOBAL + THEME
+   COLORS
+===================================================== */
+:root{
+  --luxury-red: #B71C1C;
+  --luxury-gold: #FFD700;
+  --luxury-black: #0D0D0D;
+  --luxury-white: #F5F5F5;
+}
+
+/* =====================================================
+   GLOBAL
 ===================================================== */
 html{ scroll-behavior:smooth; }
 
 body{
   margin:0;
   font-family:'Poppins', sans-serif;
-  background:#FFF6E5;
-  color:#3b1a1f;
+  background:var(--luxury-black);
+  color:var(--luxury-gold);
 }
 
-:root{
-  --royal-red:#7A0C14;
-  --royal-gold:#C9A24D;
-  --ivory:#FFF6E5;
-  --wine:#2A0A0E;
-}
-
-h1,h2,h3{
-  font-family:'Playfair Display', serif;
-  margin:0;
-}
-
-button{ font-family:'Poppins', sans-serif; }
+h1,h2,h3{ font-family:'Playfair Display', serif; margin:0; font-weight:700; }
+button{ font-family:'Poppins', sans-serif; cursor:pointer; }
 
 /* =====================================================
-   HERO
+   HERO LUXURY
 ===================================================== */
-.hero{
+.hero-luxury {
   height:100vh;
   background:
-    linear-gradient(#2A0A0ECC,#2A0A0ECC),
-    url("https://images.unsplash.com/photo-1606214811115-9c1c9eaf6c23?auto=format&fit=crop&w=1600&q=80")
-    center/cover no-repeat;
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url("https://images.unsplash.com/photo-1613479874939-51402bfb47c4?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+
+#sparkleCanvas{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:1;
+}
+
+.hero-overlay{
   text-align:center;
-  padding:20px;
-  color:white;
+  position:relative;
+  z-index:2;
 }
 
-.hero h1{
-  font-size:64px;
-  letter-spacing:3px;
-  color:var(--royal-gold);
+/* ORNAMENTS */
+.ornament{
+  position:absolute;
+  width:80px;
+  height:80px;
+  background: url('data:image/svg+xml;utf8,<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><path d="M40 0 C62 0 80 18 80 40 C80 62 62 80 40 80 C18 80 0 62 0 40 C0 18 18 0 40 0 Z" stroke="%23FFD700" stroke-width="3" fill="none"/></svg>') no-repeat center center;
+  background-size:contain;
+  opacity:0.7;
+  animation: float 6s ease-in-out infinite alternate;
 }
 
-.tagline{
-  margin:14px 0;
-  font-size:22px;
-  letter-spacing:4px;
+.top-left{ top:0; left:0; transform: rotate(0deg); }
+.top-right{ top:0; right:0; transform: rotate(45deg); }
+.bottom-left{ bottom:0; left:0; transform: rotate(-45deg); }
+.bottom-right{ bottom:0; right:0; transform: rotate(90deg); }
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(15deg); }
+  100% { transform: translateY(0) rotate(0deg); }
 }
 
-.date{
-  margin-top:20px;
-  padding:10px 28px;
-  border:1.5px solid var(--royal-gold);
+/* HERO FRAME */
+.hero-frame{
+  display:inline-block;
+  padding:50px 70px;
+  border:4px solid var(--luxury-gold);
   border-radius:40px;
-  color:var(--royal-gold);
-  font-weight:500;
+  box-shadow: 0 0 50px rgba(255,215,0,0.5);
+  background: rgba(0,0,0,0.4);
+  animation: glow 3s ease-in-out infinite alternate;
+  position:relative;
+  z-index:3;
+}
+
+.hero-frame h1{
+  font-size:72px;
+  color:var(--luxury-gold);
+  margin-bottom:12px;
+  letter-spacing:4px;
+  text-shadow: 2px 2px 12px rgba(0,0,0,0.7);
+  animation: shimmer 4s infinite;
+}
+
+.hero-frame .tagline{
+  font-size:24px;
+  color:#FFDD66;
+  margin-bottom:20px;
+  letter-spacing:3px;
+  font-style:italic;
+}
+
+.hero-frame .date{
+  font-size:20px;
+  color:var(--luxury-gold);
+  font-weight:600;
+  padding:10px 30px;
+  border:1.5px solid var(--luxury-gold);
+  border-radius:30px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+@keyframes shimmer {
+  0% { text-shadow: 2px 2px 12px rgba(0,0,0,0.7); }
+  50% { text-shadow: 2px 2px 22px var(--luxury-gold); }
+  100% { text-shadow: 2px 2px 12px rgba(0,0,0,0.7); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 40px rgba(255,215,0,0.3); }
+  50% { box-shadow: 0 0 70px rgba(255,215,0,0.6); }
+  100% { box-shadow: 0 0 40px rgba(255,215,0,0.3); }
 }
 
 /* =====================================================
    COUNTDOWN
 ===================================================== */
 #timer{
-  font-size:28px;
-  color:var(--royal-red);
+  font-size:32px;
+  color:var(--luxury-red);
   text-align:center;
-  margin:30px 0;
+  margin:40px 0;
+  font-weight:600;
+  letter-spacing:1px;
 }
 
 /* =====================================================
    SECTIONS
 ===================================================== */
 .section{
-  padding:70px 20px;
+  padding:80px 20px;
   text-align:center;
 }
 
 .section-title{
-  font-size:36px;
-  color:var(--royal-red);
+  font-size:40px;
+  color:var(--luxury-red);
+  font-weight:700;
 }
 
 .gold-divider{
-  width:90px;
+  width:100px;
   height:3px;
-  background:linear-gradient(90deg,transparent,var(--royal-gold),transparent);
-  margin:14px auto 30px;
+  background:linear-gradient(90deg,transparent,var(--luxury-gold),transparent);
+  margin:16px auto 40px;
 }
 
 /* =====================================================
    CARDS
 ===================================================== */
 .card{
-  max-width:440px;
-  margin:22px auto;
-  padding:26px;
-  background:white;
-  border-radius:22px;
-  border:1.5px solid var(--royal-gold);
-  box-shadow:0 18px 35px rgba(0,0,0,.15);
+  max-width:500px;
+  margin:24px auto;
+  padding:30px;
+  background:#1a1a1a;
+  border-radius:25px;
+  border:2px solid var(--luxury-gold);
+  box-shadow:0 20px 40px rgba(0,0,0,0.3);
+  color:var(--luxury-gold);
 }
 
 .card h3{
-  color:var(--royal-red);
+  color:var(--luxury-red);
+  font-size:26px;
+  margin-bottom:12px;
 }
 
 /* =====================================================
    GALLERY
 ===================================================== */
 .slider{
-  max-width:900px;
+  max-width:950px;
   margin:auto;
 }
 
 .slider img{
   width:100%;
-  border-radius:24px;
-  box-shadow:0 20px 40px rgba(0,0,0,.18);
+  border-radius:28px;
+  box-shadow:0 25px 50px rgba(0,0,0,0.4);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.slider img:hover{
+  transform: scale(1.02);
+  box-shadow:0 30px 60px rgba(0,0,0,0.6);
 }
 
 /* =====================================================
    RSVP
 ===================================================== */
 .rsvp{
-  max-width:440px;
+  max-width:500px;
   margin:auto;
-  background:white;
-  padding:28px;
-  border-radius:24px;
-  border:1px solid var(--royal-gold);
-  box-shadow:0 15px 30px rgba(0,0,0,.12);
+  background:#1a1a1a;
+  padding:32px;
+  border-radius:25px;
+  border:2px solid var(--luxury-gold);
+  box-shadow:0 20px 40px rgba(0,0,0,0.3);
+  color:var(--luxury-gold);
 }
 
 .rsvp input,
 .rsvp select,
 .rsvp textarea{
   width:100%;
-  padding:12px;
-  margin:8px 0;
-  border-radius:10px;
-  border:1px solid #ccc;
-  font-size:14px;
+  padding:14px;
+  margin:10px 0;
+  border-radius:12px;
+  border:1px solid #555;
+  background:#0d0d0d;
+  color:var(--luxury-gold);
+  font-size:15px;
 }
 
-.rsvp textarea{ resize:none; min-height:80px; }
+.rsvp textarea{ resize:none; min-height:100px; }
 
 .btn-royal{
-  margin-top:12px;
-  padding:14px;
+  margin-top:14px;
+  padding:16px;
   border:none;
-  border-radius:40px;
-  font-size:16px;
+  border-radius:50px;
+  font-size:18px;
   cursor:pointer;
-  color:#3b1a1f;
-  background:linear-gradient(135deg,#E7C873,var(--royal-gold),#A88434);
+  color:var(--luxury-black);
+  background:linear-gradient(135deg,#FFD700,#FFB400,#FFD700);
+  font-weight:700;
+  box-shadow:0 6px 20px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease;
 }
-
-/* =====================================================
-   DARK MODE
-===================================================== */
-.dark{
-  background:var(--wine);
-  color:#eee;
-}
-
-.dark .card,
-.dark .rsvp{
-  background:#3a1217;
-  color:white;
-}
-
-.dark input,
-.dark textarea,
-.dark select{
-  background:#2A0A0E;
-  color:white;
-  border:1px solid #7a3b42;
-}
-
-/* =====================================================
-   FIXED BUTTON
-===================================================== */
-#darkToggle{
-  position:fixed;
-  top:15px;
-  right:15px;
-  z-index:999;
-}
+.btn-royal:hover{ transform: translateY(-3px); }
 
 /* =====================================================
    RESPONSIVE
 ===================================================== */
 @media(max-width:600px){
-  .hero h1{ font-size:44px; }
+  .hero-frame h1{ font-size:50px; }
+  .hero-frame .tagline{ font-size:18px; }
+  .hero-frame .date{ font-size:16px; padding:6px 20px; }
+  .ornament{ width:50px; height:50px; }
 }
 </style>
 </head>
 
 <body>
 
-<button id="darkToggle">🌙</button>
-
 <!-- HERO -->
-<header class="hero">
-  <h1>Atharva & Anubhuti</h1>
-  <p class="tagline">Together Forever</p>
-  <p class="date">16 March 2026 • Akola</p>
+<header class="hero-luxury">
+  <canvas id="sparkleCanvas"></canvas>
+  <div class="hero-overlay">
+    <div class="ornament top-left"></div>
+    <div class="ornament top-right"></div>
+    <div class="ornament bottom-left"></div>
+    <div class="ornament bottom-right"></div>
+
+    <div class="hero-frame">
+      <h1>Atharva & Anubhuti</h1>
+      <p class="tagline">Together Forever</p>
+      <p class="date">16 March 2026 • Akola</p>
+    </div>
+  </div>
 </header>
 
+<!-- COUNTDOWN -->
 <h2 id="timer"></h2>
 
-<!-- STORY -->
+<!-- STORY / SHLOKA -->
 <section class="card shloka-card">
   <h2>॥ श्री गणेशाय नमः ॥</h2>
-
   <p class="shloka">
     वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>
     निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥
   </p>
-
   <p class="shloka-meaning">
     With divine blessings, we invite you to celebrate our sacred union.
   </p>
@@ -282,12 +344,10 @@ button{ font-family:'Poppins', sans-serif; }
     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3799.1573511957607!2d77.02448511527513!3d20.683229602147765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd72de5f6dd5c83%3A0x253d9c734dbb3dfa!2sGanesh%20Krupa%20Lawns%20and%20Hall!5e0!3m2!1sen!2sin!4v1704473890123!5m2!1sen!2sin"
     allowfullscreen>
   </iframe>
-
-  <p style="margin-top:8px; font-size:14px; color:var(--royal-red);">
+  <p style="margin-top:8px; font-size:14px; color:var(--luxury-red);">
     📍 Ganesh Krupa Lawns & Hall, Akola
   </p>
 </section>
-
 
 <!-- RSVP -->
 <section class="section">
@@ -311,51 +371,72 @@ button{ font-family:'Poppins', sans-serif; }
 
 <script>
 /* COUNTDOWN */
+const timer = document.getElementById("timer");
 const countDownDate = new Date("March 16, 2026 08:50:00").getTime();
 setInterval(()=>{
   const now = new Date().getTime();
   const d = countDownDate - now;
-  if(d < 0){
-    timer.innerHTML = "🎉 Wedding Day!";
-    return;
-  }
-  timer.innerHTML =
-    Math.floor(d/(1000*60*60*24))+"d "+
-    Math.floor((d%(1000*60*60*24))/(1000*60*60))+"h "+
-    Math.floor((d%(1000*60*60))/(1000*60))+"m ";
+  if(d<0){ timer.innerHTML="🎉 Wedding Day!"; return; }
+  const days=Math.floor(d/(1000*60*60*24));
+  const hours=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+  const mins=Math.floor((d%(1000*60*60))/(1000*60));
+  timer.innerHTML = `${days}d ${hours}h ${mins}m`;
 },1000);
 
 /* SLIDER */
-const imgs=[
-  "https://picsum.photos/1200/600?1",
-  "https://picsum.photos/1200/600?2",
-  "https://picsum.photos/1200/600?3"
-];
+const imgs=["https://picsum.photos/1200/600?1","https://picsum.photos/1200/600?2","https://picsum.photos/1200/600?3"];
 let i=0;
+const slide=document.getElementById("slide");
 setInterval(()=>{ i=(i+1)%imgs.length; slide.src=imgs[i]; },3000);
 
-/* DARK MODE */
-darkToggle.onclick=()=>document.body.classList.toggle("dark");
-
 /* RSVP */
-rsvpForm.addEventListener("submit",e=>{
+const rsvpForm = document.getElementById("rsvpForm");
+const responseMsg = document.getElementById("responseMsg");
+rsvpForm.addEventListener("submit", e=>{
   e.preventDefault();
-  fetch("https://script.google.com/macros/s/AKfycbz_bkRJ7Gkqe5Sqo6L8PBd2EeifPyQR3UOVrRjle3TSpwwbjPGMxdBadie9FujSBagt/exec",{
+  fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec",{
     method:"POST",
+    headers:{"Content-Type":"application/json"},
     body:JSON.stringify({
-      name: document.getElementById("name").value,
-      phone:phone.value,
-      guests:guests.value,
-      message:message.value,
-      attendance:attendance.value
+      name:document.getElementById("name").value,
+      phone:document.getElementById("phone").value,
+      guests:document.getElementById("guests").value,
+      message:document.getElementById("message").value,
+      attendance:document.getElementById("attendance").value
     })
   }).then(()=>{
-    responseMsg.innerText="🎉 RSVP Submitted!";
+    responseMsg.innerText="🎉 RSVP Submitted Successfully!";
     rsvpForm.reset();
   }).catch(()=>{
-    responseMsg.innerText="❌ Submission failed";
+    responseMsg.innerText="❌ Submission failed. Try again.";
   });
 });
+
+/* SPARKLE CANVAS */
+const canvas=document.getElementById('sparkleCanvas');
+const ctx=canvas.getContext('2d');
+canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+const sparkles=[];
+for(let j=0;j<60;j++){
+  sparkles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*2+1, dx:(Math.random()-0.5)*0.5, dy:(Math.random()-0.5)*0.5, opacity:Math.random()});
+}
+function drawSparkles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let s of sparkles){
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,215,0,${s.opacity})`;
+    ctx.fill();
+    s.x+=s.dx; s.y+=s.dy;
+    if(s.x<0||s.x>canvas.width) s.dx*=-1;
+    if(s.y<0||s.y>canvas.height) s.dy*=-1;
+    s.opacity+=(Math.random()-0.5)*0.05;
+    if(s.opacity>1) s.opacity=1; if(s.opacity<0) s.opacity=0;
+  }
+  requestAnimationFrame(drawSparkles);
+}
+drawSparkles();
+window.addEventListener('resize',()=>{canvas.width=window.innerWidth; canvas.height=window.innerHeight;});
 </script>
 
 </body>
