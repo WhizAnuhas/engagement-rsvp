@@ -118,15 +118,80 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
 }
 
 /* =============================================
-   COUNTDOWN
+   COUNTDOWN - FULL LUXURY GLOW
 ============================================= */
 #timer{
-  font-size:32px;
-  color:var(--luxury-red);
+  font-size:48px;
+  color: var(--luxury-red);
   text-align:center;
-  margin:40px 0;
-  font-weight:600;
-  letter-spacing:1px;
+  margin:40px auto;
+  font-weight:700;
+  letter-spacing:2px;
+  display: inline-block;
+  padding: 25px 50px;
+  border-radius: 35px;
+  border: 2px solid var(--luxury-gold);
+  background: rgba(0,0,0,0.4);
+  box-shadow:
+    0 0 20px rgba(255,215,0,0.4),
+    0 0 50px rgba(255,26,26,0.4),
+    0 0 80px rgba(255,215,0,0.2);
+  animation: glowPulse 3s ease-in-out infinite alternate;
+  text-shadow:
+    0 0 10px #FF1A1A,
+    0 0 20px #FF1A1A,
+    0 0 30px #FFD700;
+}
+
+/* Glowing animation for the whole countdown */
+@keyframes glowPulse {
+  0% {
+    box-shadow:
+      0 0 20px rgba(255,215,0,0.4),
+      0 0 50px rgba(255,26,26,0.4),
+      0 0 80px rgba(255,215,0,0.2);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow:
+      0 0 40px rgba(255,215,0,0.6),
+      0 0 80px rgba(255,26,26,0.6),
+      0 0 120px rgba(255,215,0,0.4);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow:
+      0 0 20px rgba(255,215,0,0.4),
+      0 0 50px rgba(255,26,26,0.4),
+      0 0 80px rgba(255,215,0,0.2);
+    transform: scale(1);
+  }
+}
+
+/* Glowing seconds */
+#timer .seconds {
+  color: var(--luxury-gold);
+  text-shadow:
+    0 0 5px #FFD700,
+    0 0 10px #FFD700,
+    0 0 20px #FFB400,
+    0 0 30px #FFD700;
+  animation: pulseSeconds 1s infinite alternate;
+}
+
+@keyframes pulseSeconds {
+  0% {
+    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 20px #FFB400, 0 0 30px #FFD700;
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 15px #FFD700, 0 0 25px #FFD700, 0 0 35px #FFB400, 0 0 50px #FFD700;
+    transform: scale(1.1);
+  }
+  100% {
+    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 20px #FFB400, 0 0 30px #FFD700;
+    transform: scale(1);
+  }
 }
 
 /* =============================================
@@ -322,18 +387,28 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
 </section>
 
 <script>
-/* COUNTDOWN */
+/* COUNTDOWN WITH SECONDS */
 const timer = document.getElementById("timer");
 const countDownDate = new Date("March 11, 2026 08:50:00").getTime();
-setInterval(()=>{
+
+setInterval(() => {
   const now = new Date().getTime();
-  const d = countDownDate - now;
-  if(d<0){ timer.innerHTML="🎉 Wedding Day!"; return; }
-  const days=Math.floor(d/(1000*60*60*24));
-  const hours=Math.floor((d%(1000*60*60*24))/(1000*60*60));
-  const mins=Math.floor((d%(1000*60*60))/(1000*60));
-  timer.innerHTML = `${days}d ${hours}h ${mins}m`;
-},1000);
+  const distance = countDownDate - now;
+
+  if(distance < 0){
+    timer.innerHTML = "🎉 Wedding Day!";
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const secs = Math.floor((distance % (1000 * 60)) / 1000);
+
+  timer.innerHTML = `
+    ${days}d : ${hours}h : ${mins}m : <span class="seconds">${secs}s</span>
+  `;
+}, 1000);
 
 /* SLIDER */
 const imgs=["https://picsum.photos/1200/600?1","https://picsum.photos/1200/600?2","https://picsum.photos/1200/600?3"];
@@ -377,7 +452,7 @@ function drawSparkles(){
   for(let s of sparkles){
     ctx.beginPath();
     ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-    ctx.fillStyle=`rgba(255,26,26,${s.opacity})`;
+    ctx.fillStyle=`rgba(255,215,0,${s.opacity})`;
     ctx.fill();
     s.x+=s.dx; s.y+=s.dy;
     if(s.x<0||s.x>canvas.width) s.dx*=-1;
@@ -393,4 +468,5 @@ window.addEventListener('resize',()=>{canvas.width=window.innerWidth; canvas.hei
 
 </body>
 </html>
+
 
