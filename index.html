@@ -1,296 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Anuhas & Sofiya | Engagement Ceremony Invitation</title>
 
-<!-- GOOGLE FONTS -->
+<!-- FONTS -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --luxury-red: #FF1A1A;
-  --luxury-gold: #FFD700;
-  --luxury-black: #0D0D0D;
-  --luxury-white: #F5F5F5;
+  --luxury-red:#FF1A1A;
+  --luxury-gold:#FFD700;
+  --luxury-black:#0D0D0D;
+  --luxury-white:#F5F5F5;
+  --overlay: rgba(0,0,0,0.14);
 }
 
-/* GLOBAL */
-html, body {
-  margin:0;
-  padding:0;
-  font-family:'Poppins', sans-serif;
-  background: var(--luxury-black);
-  overflow-x: hidden;
-}
-h1,h2,h3,h5{ font-family:'Playfair Display', serif; margin:0; font-weight:700; }
-button{ font-family:'Poppins', sans-serif; cursor:pointer; }
+/* RESET */
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Poppins',sans-serif;background:var(--luxury-black);color:var(--luxury-gold);line-height:1.5;}
+h1,h2,h3,h4,h5{font-family:'Playfair Display',serif;margin:0;}
 
 /* PAGE WRAPPER */
-.page {
-  width:100%;
-  height:100vh;
-  position:absolute;
-  top:0;
-  left:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  transition: left 0.6s ease;
-  overflow-y:auto;
-  padding:20px;
-}
-.page.active{ left:0; }
-.page.prev{ left:-100%; }
-.page.next{ left:100%; }
+.page{width:100%; min-height:100vh; padding:20px 0; display:flex; justify-content:center; align-items:center; flex-direction:column;}
 
-/* HERO SECTION PAGE 1 */
-.hero-luxury {
-  height:100%;
-  width:100%;
+/* HERO */
+.hero-luxury{
+  width:100%; height:100vh; position:relative;
+  display:flex; justify-content:center; align-items:center;
   background:
     linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
     url("https://images.unsplash.com/photo-1613479874939-51402bfb47c4?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  position:relative;
-  overflow:hidden;
 }
-#sparkleCanvas{
-  position:absolute;
-  top:0; left:0;
-  width:100%; height:100%;
-  pointer-events:none; z-index:1;
-}
+#sparkleCanvas{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:1; }
 .hero-frame{
-  display:inline-block;
-  padding:40px 60px;
-  border:4px solid var(--luxury-gold);
-  border-radius:40px;
-  background: rgba(0,0,0,0.4);
-  box-shadow: 0 0 50px rgba(255,215,0,0.5);
-  animation: glow 3s ease-in-out infinite alternate;
-  position:relative;
   z-index:3;
-}
-.hero-frame h1{
-  font-size:48px;
-  color:var(--luxury-red);
-  margin-bottom:12px;
-  letter-spacing:3px;
-  text-shadow: 0 0 15px rgba(255,26,26,0.7), 0 0 30px rgba(255,26,26,0.5);
-  animation: shimmer 4s infinite;
-}
-.hero-frame .tagline{
-  font-size:20px;
-  color:#FFDD66;
-  margin-bottom:15px;
-  letter-spacing:2px;
-  font-style:italic;
-}
-.hero-frame .date{
-  font-size:16px;
-  color:var(--luxury-gold);
-  font-weight:600;
-  padding:8px 20px;
-  border:1.5px solid var(--luxury-gold);
-  border-radius:30px;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-  margin-bottom:15px;
-}
-
-/* CINEMATIC COUNTDOWN */
-#timer {
-  font-size:32px;
-  color: var(--luxury-red);
-  font-weight:700;
-  display: inline-block;
-  padding: 15px 30px;
-  border-radius: 35px;
-  border: 2px solid var(--luxury-gold);
-  background: rgba(0,0,0,0.4);
-  box-shadow:0 0 20px rgba(255,215,0,0.4),0 0 50px rgba(255,26,26,0.4),0 0 80px rgba(255,215,0,0.2);
-  text-shadow:0 0 10px #FF1A1A,0 0 20px #FF1A1A,0 0 30px #FFD700;
-  animation: glowPulse 3s ease-in-out infinite alternate;
-  margin:0 auto;
-}
-#timer .seconds {
-  color: var(--luxury-gold);
-  text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
-  animation: pulseSeconds 1s infinite alternate;
-}
-
-/* SHIMMER & GLOW */
-@keyframes shimmer {
-  0% { text-shadow: 0 0 15px rgba(255,26,26,0.7), 0 0 30px rgba(255,26,26,0.5); }
-  50% { text-shadow: 0 0 25px var(--luxury-red), 0 0 50px rgba(255,26,26,0.7); }
-  100% { text-shadow: 0 0 15px rgba(255,26,26,0.7), 0 0 30px rgba(255,26,26,0.5); }
-}
-@keyframes glow {
-  0% { box-shadow: 0 0 40px rgba(255,215,0,0.3); }
-  50% { box-shadow: 0 0 70px rgba(255,215,0,0.6); }
-  100% { box-shadow: 0 0 40px rgba(255,215,0,0.3); }
-}
-@keyframes glowPulse {
-  0% { box-shadow:0 0 20px rgba(255,215,0,0.4),0 0 50px rgba(255,26,26,0.4),0 0 80px rgba(255,215,0,0.2); transform: scale(1); }
-  50% { box-shadow:0 0 40px rgba(255,215,0,0.6),0 0 80px rgba(255,26,26,0.6),0 0 120px rgba(255,215,0,0.4); transform: scale(1.05); }
-  100% { box-shadow:0 0 20px rgba(255,215,0,0.4),0 0 50px rgba(255,26,26,0.4),0 0 80px rgba(255,215,0,0.2); transform: scale(1); }
-}
-@keyframes pulseSeconds {
-  0% { text-shadow: 0 0 5px #FFD700,0 0 10px #FFD700; transform: scale(1); }
-  50% { text-shadow: 0 0 15px #FFD700,0 0 25px #FFD700; transform: scale(1.1); }
-  100% { text-shadow: 0 0 5px #FFD700,0 0 10px #FFD700; transform: scale(1); }
-}
-
-/* PAGE 2 INVITATION */
-.invitation {
-  width:100%;
-  height:100%;
-  background: url('YOUR_BACKGROUND_IMAGE_URL') center/cover no-repeat;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  display:inline-block;
+  padding:40px 56px;
+  border-radius:36px;
+  border:4px solid var(--luxury-gold);
+  background: rgba(0,0,0,0.42);
+  box-shadow:0 0 50px rgba(255,215,0,0.45);
   text-align:center;
-  padding:40px 20px;
+  animation: heroGlow 3s ease-in-out infinite alternate;
 }
-.invitation .text-container {
-  background: rgba(0,0,0,0.5);
-  border-radius:30px;
-  padding:30px;
-  max-width:500px;
-  color: var(--luxury-white);
-  text-shadow: 0 0 10px #fff,0 0 20px #fff;
+.hero-frame h1{ font-size:48px; color:var(--luxury-red); letter-spacing:3px; margin-bottom:10px; text-shadow:0 0 15px rgba(255,26,26,0.7),0 0 30px rgba(255,26,26,0.45); animation: shimmer 4s infinite;}
+.hero-frame .tagline{ font-size:18px; color:#FFDD66; margin-bottom:12px; }
+.hero-frame .date{ font-size:16px; color:var(--luxury-gold); padding:8px 20px; border-radius:28px; border:1.5px solid var(--luxury-gold); margin-bottom:16px; }
+#timer{ font-size:32px; color:var(--luxury-red); display:inline-block; padding:14px 26px; border-radius:28px; border:2px solid var(--luxury-gold); background:rgba(0,0,0,0.35); box-shadow:0 0 18px rgba(255,215,0,0.35),0 0 40px rgba(255,26,26,0.25); text-shadow:0 0 10px #FF1A1A,0 0 18px #FF1A1A; margin:0 auto 12px;}
+#timer .seconds{ color:var(--luxury-gold); text-shadow:0 0 8px #FFD700; animation:pulseSeconds 1s infinite alternate; }
+
+/* INVITATION PAGE */
+.invitation{
+  width:100%; display:flex; justify-content:center; align-items:center; padding:40px 20px; position:relative;
+  background-image: url('YOUR_IMAGE_URL_HERE'); background-size:cover; background-position:center;
 }
-.invitation h2 { font-size:28px; margin-bottom:20px; }
-.invitation p { font-size:16px; line-height:1.6; margin-bottom:12px; }
+.invitation::before{ content:""; position:absolute; inset:0; background:var(--overlay); z-index:0; }
+.text-container{ position:relative; z-index:2; background: rgba(255,255,255,0.92); padding:28px; border-radius:28px; max-width:720px; color:#222; box-shadow:0 20px 40px rgba(0,0,0,0.25); text-align:center; line-height:1.6; font-size:17px; }
+
+/* RED SECTIONS: AGENDA / GALLERY / RSVP */
+.section-red{ width:100%; padding:40px 20px; background:var(--luxury-red); color:var(--luxury-gold); display:flex; flex-direction:column; align-items:center; justify-content:flex-start;}
+.section-title{ font-size:28px; margin-top:6px; }
+.gold-divider{ width:80px; height:3px; background:linear-gradient(90deg,transparent,var(--luxury-gold),transparent); margin:12px auto 22px; }
+
+/* CARD / AGENDA */
+.card{ width:100%; max-width:760px; background:#1a1a1a; padding:22px; border-radius:14px; border:2px solid var(--luxury-gold); box-shadow:0 12px 30px rgba(0,0,0,0.3); color:var(--luxury-gold); margin-bottom:18px; }
+.agenda-item{ opacity:0; transform:translateY(18px); transition: all .7s cubic-bezier(.2,.9,.2,1); color:var(--luxury-white); font-size:18px; margin-bottom:10px; text-shadow:0 0 10px rgba(255,255,255,0.5);}
+.agenda-item.show{ opacity:1; transform:translateY(0); }
+
+/* GALLERY */
+.slider{ width:100%; max-width:760px; margin:12px auto; }
+.slider img{ width:100%; border-radius:12px; box-shadow:0 12px 30px rgba(0,0,0,0.4); display:block; }
+
+/* RSVP */
+.rsvp{ width:100%; max-width:760px; padding:18px; background:#1a1a1a; border-radius:12px; border:2px solid var(--luxury-gold); color:var(--luxury-gold); box-shadow:0 12px 30px rgba(0,0,0,0.25); }
+.rsvp input, .rsvp select, .rsvp textarea{ width:100%; padding:12px; margin:8px 0; border-radius:10px; border:1px solid #444; background:#0d0d0d; color:var(--luxury-gold); font-size:15px; }
+.btn-royal{ display:inline-block; padding:12px 20px; border-radius:28px; border:none; background:linear-gradient(135deg,#FFD700,#FFB400); color:#0d0d0d; font-weight:700; cursor:pointer; margin-top:8px; box-shadow:0 6px 16px rgba(0,0,0,0.3); }
+
+/* KEYFRAMES */
+@keyframes heroGlow{ 0%{box-shadow:0 0 30px rgba(255,215,0,0.3);}50%{box-shadow:0 0 60px rgba(255,215,0,0.55);}100%{box-shadow:0 0 30px rgba(255,215,0,0.3);} }
+@keyframes shimmer{0%{text-shadow:0 0 15px rgba(255,26,26,0.7);}50%{text-shadow:0 0 25px var(--luxury-red);}100%{text-shadow:0 0 15px rgba(255,26,26,0.7);}}
+@keyframes pulseSeconds{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
 
 /* RESPONSIVE */
-@media(max-width:600px){
-  .hero-frame h1{ font-size:36px; }
-  .hero-frame .tagline{ font-size:16px; }
-  .hero-frame .date{ font-size:14px; padding:5px 15px; }
-  #timer { font-size:24px; padding:10px 20px; }
-  .invitation h2 { font-size:22px; }
-  .invitation p { font-size:14px; }
+@media(max-width:720px){
+  .hero-frame{ padding:26px 18px }
+  .hero-frame h1{ font-size:32px }
+  #timer{ font-size:20px; padding:8px 14px }
+  .text-container{ padding:18px; margin:12px }
+  .agenda-item{ font-size:16px }
 }
 </style>
 </head>
 <body>
 
-<!-- PAGE 1 HERO -->
-<div class="page active" id="page1">
-  <header class="hero-luxury">
-    <canvas id="sparkleCanvas"></canvas>
-    <div class="hero-frame">
-      <h1>Anuhas & Sofiya</h1>
-      <p class="tagline">Together Forever</p>
-      <p class="date">11 March 2026 • Avana Grand, Godagama, Colombo, Sri Lanka</p>
-      <h2 id="timer"></h2>
-    </div>
-  </header>
-</div>
-
-<!-- PAGE 2 INVITATION -->
-<div class="page" id="page2">
-  <div class="invitation">
-    <div class="text-container">
-      <h2>By the grace of God and with joyful blessings of our families,</h2>
-      <p>we are delighted to invite you to join us in celebrating the engagement of our beloved Sofiya and Anuhas.</p>
-      <p>Your presence will make this special occasion even more memorable as we come together to share in the love, happiness, and promise of their future together.</p>
-      <p><strong>Date:</strong> 11 March 2026</p>
-      <p><strong>Time:</strong> 6 p.m.</p>
-      <p><strong>Venue:</strong> Avana Grand</p>
-      <p>With love and gratitude,</p>
-      <p>[Family Name of Bride] & [Family Name of Groom]</p>
-    </div>
+<!-- PAGE 1: HERO -->
+<div class="page hero-luxury">
+  <canvas id="sparkleCanvas"></canvas>
+  <div class="hero-frame">
+    <h1>Anuhas & Sofiya</h1>
+    <p class="tagline">Together Forever</p>
+    <p class="date">11 March 2026 • Avana Grand, Godagama, Colombo, Sri Lanka</p>
+    <h2 id="timer"></h2>
   </div>
 </div>
 
-<!-- NAVIGATION BUTTONS -->
-<button id="prevBtn" style="position:fixed;top:50%;left:10px;z-index:1000;">⬅️</button>
-<button id="nextBtn" style="position:fixed;top:50%;right:10px;z-index:1000;">➡️</button>
+<!-- PAGE 2: INVITATION -->
+<div class="page invitation">
+  <div class="text-container">
+    <h2>By the grace of God and with the joyful blessings of our families</h2>
+    <p>we are delighted to invite you to join us in celebrating the engagement of our beloved <strong>Sofiya</strong> and <strong>Anuhas</strong>.</p>
+    <p>Your presence will make this special occasion even more memorable as we come together to share in the love, happiness, and promise of their future together.</p>
+    <p><strong>Date:</strong> 11 March 2026<br/><strong>Time:</strong> 6 p.m.<br/><strong>Venue:</strong> Avana Grand, Godagama, Colombo, Sri Lanka</p>
+    <p>We look forward to celebrating this joyous moment with you and sincerely hope you can join us for an evening of love, laughter, and cherished memories.</p>
+    <p><em>With love and gratitude,<br/>[Family Name of Bride] &amp; [Family Name of Groom]</em></p>
+  </div>
+</div>
+
+<!-- PAGE 3: AGENDA -->
+<div class="page section-red">
+  <h2 class="section-title">Event Agenda</h2>
+  <div class="gold-divider"></div>
+  <div class="card" id="agendaCard">
+    <h5 class="agenda-item">6:00 PM – 6:30 PM Guests Arrival & Welcome Drinks / Snacks</h5>
+    <h5 class="agenda-item">6:30 PM – 6:45 PM Opening & Introduction by Host / MC</h5>
+    <h5 class="agenda-item">6:45 PM – 7:15 PM Engagement Ceremony (Ring Exchange & Blessings)</h5>
+    <h5 class="agenda-item">7:15 PM – 7:45 PM Photo Session with Couple & Families</h5>
+    <h5 class="agenda-item">7:45 PM – 8:30 PM Speeches & Toasts by Family & Friends</h5>
+    <h5 class="agenda-item">8:30 PM – 10:00 PM Dinner / Refreshments</h5>
+    <h5 class="agenda-item">10:00 PM – 10:30 PM Dance / Entertainment</h5>
+    <h5 class="agenda-item">10:30 PM – 11:00 PM Closing & Thank You by Host / Couple</h5>
+  </div>
+</div>
+
+<!-- PAGE 4: GALLERY -->
+<div class="page section-red">
+  <h2 class="section-title">Gallery</h2>
+  <div class="gold-divider"></div>
+  <div class="slider">
+    <img id="slide" src="https://picsum.photos/1200/600?1" alt="Gallery image">
+  </div>
+</div>
+
+<!-- PAGE 5: RSVP -->
+<div class="page section-red">
+  <h2 class="section-title">RSVP</h2>
+  <div class="gold-divider"></div>
+  <form id="rsvpForm" class="rsvp" autocomplete="off">
+    <input id="name" name="name" placeholder="Your Name" required>
+    <input id="phone" name="phone" placeholder="Phone Number" required>
+    <input id="guests" name="guests" type="number" min="1" placeholder="Guests">
+    <textarea id="message" name="message" placeholder="Message / Blessings"></textarea>
+    <select id="attendance" name="attendance" required>
+      <option value="">Will you attend?</option>
+      <option>Yes</option>
+      <option>No</option>
+    </select>
+    <button class="btn-royal" type="submit">Submit RSVP</button>
+  </form>
+  <p id="responseMsg" style="margin-top:12px;"></p>
+</div>
 
 <script>
-/* MULTI-PAGE NAVIGATION */
-let currentPage = 1;
-const totalPages = 2;
-
-function showPage(num) {
-  if(num < 1) num = 1;
-  if(num > totalPages) num = totalPages;
-
-  for(let i=1;i<=totalPages;i++){
-    const page = document.getElementById('page'+i);
-    page.classList.remove('active','prev','next');
-    if(i < num) page.classList.add('prev');
-    else if(i > num) page.classList.add('next');
-    else page.classList.add('active');
-  }
-  currentPage = num;
+/* Countdown */
+const timer=document.getElementById('timer');
+const countDownDate=new Date("March 11, 2026 18:00:00").getTime();
+function updateTimer(){
+  const now=Date.now();
+  const d=countDownDate-now;
+  if(d<=0){ timer.innerHTML="🎉 Wedding Day!"; return; }
+  const days=Math.floor(d/(1000*60*60*24));
+  const hours=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+  const mins=Math.floor((d%(1000*60*60))/(1000*60));
+  const secs=Math.floor((d%(1000*60))/1000);
+  timer.innerHTML=`${days}d : ${hours}h : ${mins}m : <span class="seconds">${secs}s</span>`;
 }
+updateTimer(); setInterval(updateTimer,1000);
 
-document.getElementById('prevBtn').addEventListener('click',()=>{ showPage(currentPage-1); });
-document.getElementById('nextBtn').addEventListener('click',()=>{ showPage(currentPage+1); });
-
-/* KEYBOARD NAVIGATION */
-document.addEventListener('keydown', e=>{
-  if(e.key==='ArrowRight') showPage(currentPage+1);
-  if(e.key==='ArrowLeft') showPage(currentPage-1);
-});
-
-/* MOBILE SWIPE NAVIGATION */
-let touchStartX = 0;
-let touchEndX = 0;
-function handleGesture() {
-  if(touchStartX - touchEndX > 50) showPage(currentPage+1);
-  if(touchEndX - touchStartX > 50) showPage(currentPage-1);
-}
-document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, false);
-document.addEventListener('touchend', e => { touchEndX = e.changedTouches[0].screenX; handleGesture(); }, false);
-
-/* CINEMATIC COUNTDOWN */
-const timer = document.getElementById("timer");
-const countDownDate = new Date("March 11, 2026 08:50:00").getTime();
-setInterval(() => {
-  const now = new Date().getTime();
-  const distance = countDownDate - now;
-  if(distance < 0){ timer.innerHTML="🎉 Wedding Day!"; return; }
-  const days = Math.floor(distance / (1000*60*60*24));
-  const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-  const mins = Math.floor((distance % (1000*60*60)) / (1000*60));
-  const secs = Math.floor((distance % (1000*60)) / 1000);
-  timer.innerHTML = `${days}d : ${hours}h : ${mins}m : <span class="seconds">${secs}s</span>`;
-}, 1000);
-
-/* SPARKLE CANVAS */
+/* Sparkles */
 const canvas=document.getElementById('sparkleCanvas');
-const ctx=canvas.getContext('2d');
-canvas.width=window.innerWidth; canvas.height=window.innerHeight;
-const sparkles=[];
-for(let j=0;j<60;j++){
-  sparkles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5,opacity:Math.random()});
-}
-function drawSparkles(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  for(let s of sparkles){
-    ctx.beginPath();
-    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-    ctx.fillStyle=`rgba(255,215,0,${s.opacity})`;
-    ctx.fill();
-    s.x+=s.dx; s.y+=s.dy;
-    if(s.x<0||s.x>canvas.width) s.dx*=-1;
-    if(s.y<0||s.y>canvas.height) s.dy*=-1;
-    s.opacity+=(Math.random()-0.5)*0.05;
-    if(s.opacity>1)s.opacity=1;if(s.opacity<0)s.opacity=0;
-  }
-  requestAnimationFrame(drawSparkles);
-}
-drawSparkles();
-window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;});
+if(canvas){const ctx=canvas.getContext('2d');function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}window.addEventListener('resize',resize);resize();
+const sparkles=[];for(let i=0;i<60;i++){sparkles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+0.8,dx:(Math.random()-0.5)*0.6,dy:(Math.random()-0.5)*0.6,o:Math.random()*0.9});}
+function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);for(const s of sparkles){ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,215,0,${s.o})`;ctx.fill();s.x+=s.dx;s.y+=s.dy;if(s.x<0||s.x>canvas.width)s.dx*=-1;if(s.y<0||s.y>canvas.height)s.dy*=-1;s.o+= (Math.random()-0.5)*0.04;s.o=Math.max(0.1,Math.min(1,s.o));}requestAnimationFrame(draw);}draw();}
+
+/* Gallery Slider */
+const imgs=["https://picsum.photos/1200/600?1","https://picsum.photos/1200/600?2","https://picsum.photos/1200/600?3"];
+let gi=0; const slide=document.getElementById('slide');
+if(slide){setInterval(()=>{gi=(gi+1)%imgs.length; slide.src=imgs[gi];},3000);}
+
+/* Agenda Animation */
+function animateAgenda(){const items=document.querySelectorAll('#agendaCard .agenda-item'); items.forEach(it=>it.classList.remove('show')); items.forEach((it,idx)=>setTimeout(()=>it.classList.add('show'), idx*600));}
+animateAgenda();
+
+/* RSVP */
+const rsvpForm=document.getElementById('rsvpForm');
+const responseMsg=document.getElementById('responseMsg');
+if(rsvpForm){rsvpForm.addEventListener('submit',e=>{e.preventDefault(); responseMsg.textContent=''; const payload={name:document.getElementById('name').value, phone:document.getElementById('phone').value, guests:document.getElementById('guests').value, message:document.getElementById('message').value, attendance:document.getElementById('attendance').value};fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}).then(()=>{responseMsg.style.color="#B3FFB3"; responseMsg.textContent="🎉 RSVP Submitted Successfully!"; rsvpForm.reset();}).catch(()=>{responseMsg.style.color="#FFCCCC"; responseMsg.textContent="❌ Submission failed. Please try again.";});});}
 </script>
+
 </body>
 </html>
+
