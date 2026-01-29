@@ -8,37 +8,35 @@
 <!-- GOOGLE FONTS -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&600&700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* =====================================================
+/* =============================================
    COLORS
-===================================================== */
+============================================= */
 :root{
-  --luxury-red: #B71C1C;
+  --luxury-red: #FF1A1A;
   --luxury-gold: #FFD700;
   --luxury-black: #0D0D0D;
   --luxury-white: #F5F5F5;
 }
 
-/* =====================================================
+/* =============================================
    GLOBAL
-===================================================== */
+============================================= */
 html{ scroll-behavior:smooth; }
-
 body{
   margin:0;
   font-family:'Poppins', sans-serif;
   background:var(--luxury-black);
   color:var(--luxury-gold);
 }
-
 h1,h2,h3{ font-family:'Playfair Display', serif; margin:0; font-weight:700; }
 button{ font-family:'Poppins', sans-serif; cursor:pointer; }
 
-/* =====================================================
-   HERO LUXURY
-===================================================== */
+/* =============================================
+   HERO SECTION
+============================================= */
 .hero-luxury {
   height:100vh;
   background:
@@ -67,28 +65,6 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   z-index:2;
 }
 
-/* ORNAMENTS */
-.ornament{
-  position:absolute;
-  width:80px;
-  height:80px;
-  background: url('data:image/svg+xml;utf8,<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><path d="M40 0 C62 0 80 18 80 40 C80 62 62 80 40 80 C18 80 0 62 0 40 C0 18 18 0 40 0 Z" stroke="%23FFD700" stroke-width="3" fill="none"/></svg>') no-repeat center center;
-  background-size:contain;
-  opacity:0.7;
-  animation: float 6s ease-in-out infinite alternate;
-}
-
-.top-left{ top:0; left:0; transform: rotate(0deg); }
-.top-right{ top:0; right:0; transform: rotate(45deg); }
-.bottom-left{ bottom:0; left:0; transform: rotate(-45deg); }
-.bottom-right{ bottom:0; right:0; transform: rotate(90deg); }
-
-@keyframes float {
-  0% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(15deg); }
-  100% { transform: translateY(0) rotate(0deg); }
-}
-
 /* HERO FRAME */
 .hero-frame{
   display:inline-block;
@@ -104,10 +80,10 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
 
 .hero-frame h1{
   font-size:72px;
-  color:var(--luxury-gold);
+  color:var(--luxury-red);
   margin-bottom:12px;
   letter-spacing:4px;
-  text-shadow: 2px 2px 12px rgba(0,0,0,0.7);
+  text-shadow: 0 0 15px rgba(255,26,26,0.7), 0 0 30px rgba(255,26,26,0.5);
   animation: shimmer 4s infinite;
 }
 
@@ -130,9 +106,9 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
 }
 
 @keyframes shimmer {
-  0% { text-shadow: 2px 2px 12px rgba(0,0,0,0.7); }
-  50% { text-shadow: 2px 2px 22px var(--luxury-gold); }
-  100% { text-shadow: 2px 2px 12px rgba(0,0,0,0.7); }
+  0% { text-shadow: 0 0 15px rgba(255,26,26,0.7), 0 0 30px rgba(255,26,26,0.5); }
+  50% { text-shadow: 0 0 25px var(--luxury-red), 0 0 50px rgba(255,26,26,0.7); }
+  100% { text-shadow: 0 0 15px rgba(255,26,26,0.7), 0 0 30px rgba(255,26,26,0.5); }
 }
 
 @keyframes glow {
@@ -141,9 +117,9 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   100% { box-shadow: 0 0 40px rgba(255,215,0,0.3); }
 }
 
-/* =====================================================
+/* =============================================
    COUNTDOWN
-===================================================== */
+============================================= */
 #timer{
   font-size:32px;
   color:var(--luxury-red);
@@ -153,9 +129,9 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   letter-spacing:1px;
 }
 
-/* =====================================================
+/* =============================================
    SECTIONS
-===================================================== */
+============================================= */
 .section{
   padding:80px 20px;
   text-align:center;
@@ -174,9 +150,9 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   margin:16px auto 40px;
 }
 
-/* =====================================================
+/* =============================================
    CARDS
-===================================================== */
+============================================= */
 .card{
   max-width:500px;
   margin:24px auto;
@@ -194,9 +170,9 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   margin-bottom:12px;
 }
 
-/* =====================================================
+/* =============================================
    GALLERY
-===================================================== */
+============================================= */
 .slider{
   max-width:950px;
   margin:auto;
@@ -214,9 +190,9 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   box-shadow:0 30px 60px rgba(0,0,0,0.6);
 }
 
-/* =====================================================
+/* =============================================
    RSVP
-===================================================== */
+============================================= */
 .rsvp{
   max-width:500px;
   margin:auto;
@@ -258,14 +234,13 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
 }
 .btn-royal:hover{ transform: translateY(-3px); }
 
-/* =====================================================
+/* =============================================
    RESPONSIVE
-===================================================== */
+============================================= */
 @media(max-width:600px){
   .hero-frame h1{ font-size:50px; }
   .hero-frame .tagline{ font-size:18px; }
   .hero-frame .date{ font-size:16px; padding:6px 20px; }
-  .ornament{ width:50px; height:50px; }
 }
 </style>
 </head>
@@ -276,15 +251,10 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
 <header class="hero-luxury">
   <canvas id="sparkleCanvas"></canvas>
   <div class="hero-overlay">
-    <div class="ornament top-left"></div>
-    <div class="ornament top-right"></div>
-    <div class="ornament bottom-left"></div>
-    <div class="ornament bottom-right"></div>
-
     <div class="hero-frame">
       <h1>Anuhas & Sofiya</h1>
       <p class="tagline">Together Forever</p>
-      <p class="date">11 March 2026 • Akola</p>
+      <p class="date">11 March 2026 • Avana Grand, Godagama, Colombo, Sri Lanka</p>
     </div>
   </div>
 </header>
@@ -320,33 +290,15 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
 
   <div class="card">
     <h3>Sangeet Night</h3>
-    <p>15 March • 7:00 PM</p>
-    <p>Ganesh Krupa Wedding Hall</p>
+    <p>10 March • 7:00 PM</p>
+    <p>Avana Grand, Godagama, Colombo, Sri Lanka</p>
   </div>
 
   <div class="card">
-    <h3>Wedding Ceremony</h3>
-    <p>16 March • 08:50 AM</p>
-    <p>Ganesh Krupa Wedding Hall</p>
+    <h3>Engagement Ceremony</h3>
+    <p>11 March • 08:50 AM</p>
+    <p>Avana Grand, Godagama, Colombo, Sri Lanka</p>
   </div>
-</section>
-
-<!-- MAP -->
-<section class="section">
-  <h2 class="section-title">Venue</h2>
-  <div class="gold-divider"></div>
-
-  <iframe
-    width="90%"
-    height="300"
-    style="border-radius:18px; border:0"
-    loading="lazy"
-    src="<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.3143308487706!2d80.03844477475636!3d6.852874693145492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2535126d2cf49%3A0x401223fd7e05e6bd!2sAvana%20Grand%20Banquets!5e0!3m2!1sen!2slk!4v1769713517770!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>"
-    allowfullscreen>
-  </iframe>
-  <p style="margin-top:8px; font-size:14px; color:var(--luxury-red);">
-    📍 Avana Grand
-  </p>
 </section>
 
 <!-- RSVP -->
@@ -425,7 +377,7 @@ function drawSparkles(){
   for(let s of sparkles){
     ctx.beginPath();
     ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-    ctx.fillStyle=`rgba(255,215,0,${s.opacity})`;
+    ctx.fillStyle=`rgba(255,26,26,${s.opacity})`;
     ctx.fill();
     s.x+=s.dx; s.y+=s.dy;
     if(s.x<0||s.x>canvas.width) s.dx*=-1;
@@ -441,3 +393,4 @@ window.addEventListener('resize',()=>{canvas.width=window.innerWidth; canvas.hei
 
 </body>
 </html>
+
