@@ -39,6 +39,17 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   justify-content:center;
   align-items:center;
   position:relative;
+  overflow:hidden;
+}
+
+#sparkleCanvas{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:1;
 }
 
 .hero-overlay{
@@ -53,6 +64,10 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   border:4px solid var(--luxury-gold);
   border-radius:40px;
   background: rgba(0,0,0,0.4);
+  box-shadow: 0 0 50px rgba(255,215,0,0.5);
+  animation: glow 3s ease-in-out infinite alternate;
+  position:relative;
+  z-index:3;
 }
 
 .hero-frame h1{
@@ -60,6 +75,8 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   color:var(--luxury-red);
   margin-bottom:12px;
   letter-spacing:4px;
+  text-shadow: 0 0 15px rgba(255,26,26,0.7), 0 0 30px rgba(255,26,26,0.5);
+  animation: shimmer 4s infinite;
 }
 
 .hero-frame .tagline{
@@ -77,19 +94,61 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   padding:10px 30px;
   border:1.5px solid var(--luxury-gold);
   border-radius:30px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  margin-bottom:20px;
 }
 
-/* COUNTDOWN SIMPLE CENTERED */
+/* CINEMATIC COUNTDOWN INSIDE HERO */
 #timer {
-  font-size:64px;
-  color: var(--luxury-gold);
-  text-align:center;
-  margin:80px auto;
+  font-size:48px;
+  color: var(--luxury-red);
   font-weight:700;
+  display: inline-block;
+  padding: 20px 40px;
+  border-radius: 35px;
+  border: 2px solid var(--luxury-gold);
+  background: rgba(0,0,0,0.4);
+  box-shadow:
+    0 0 20px rgba(255,215,0,0.4),
+    0 0 50px rgba(255,26,26,0.4),
+    0 0 80px rgba(255,215,0,0.2);
+  text-shadow:
+    0 0 10px #FF1A1A,
+    0 0 20px #FF1A1A,
+    0 0 30px #FFD700;
+  animation: glowPulse 3s ease-in-out infinite alternate;
+  margin:0 auto;
 }
 
 #timer .seconds {
-  color: var(--luxury-red);
+  color: var(--luxury-gold);
+  text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+  animation: pulseSeconds 1s infinite alternate;
+}
+
+/* SHIMMER & GLOW ANIMATIONS */
+@keyframes shimmer {
+  0% { text-shadow: 0 0 15px rgba(255,26,26,0.7), 0 0 30px rgba(255,26,26,0.5); }
+  50% { text-shadow: 0 0 25px var(--luxury-red), 0 0 50px rgba(255,26,26,0.7); }
+  100% { text-shadow: 0 0 15px rgba(255,26,26,0.7), 0 0 30px rgba(255,26,26,0.5); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 40px rgba(255,215,0,0.3); }
+  50% { box-shadow: 0 0 70px rgba(255,215,0,0.6); }
+  100% { box-shadow: 0 0 40px rgba(255,215,0,0.3); }
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 20px rgba(255,215,0,0.4),0 0 50px rgba(255,26,26,0.4),0 0 80px rgba(255,215,0,0.2); transform: scale(1); }
+  50% { box-shadow: 0 0 40px rgba(255,215,0,0.6),0 0 80px rgba(255,26,26,0.6),0 0 120px rgba(255,215,0,0.4); transform: scale(1.05); }
+  100% { box-shadow: 0 0 20px rgba(255,215,0,0.4),0 0 50px rgba(255,26,26,0.4),0 0 80px rgba(255,215,0,0.2); transform: scale(1); }
+}
+
+@keyframes pulseSeconds {
+  0% { text-shadow: 0 0 5px #FFD700,0 0 10px #FFD700; transform: scale(1); }
+  50% { text-shadow: 0 0 15px #FFD700,0 0 25px #FFD700; transform: scale(1.1); }
+  100% { text-shadow: 0 0 5px #FFD700,0 0 10px #FFD700; transform: scale(1); }
 }
 
 /* SECTIONS */
@@ -198,7 +257,7 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   .hero-frame h1{ font-size:50px; }
   .hero-frame .tagline{ font-size:18px; }
   .hero-frame .date{ font-size:16px; padding:6px 20px; }
-  #timer { font-size:48px; }
+  #timer { font-size:32px; padding:15px 30px; }
 }
 </style>
 </head>
@@ -207,17 +266,16 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
 
 <!-- HERO -->
 <header class="hero-luxury">
+  <canvas id="sparkleCanvas"></canvas>
   <div class="hero-overlay">
     <div class="hero-frame">
       <h1>Anuhas & Sofiya</h1>
       <p class="tagline">Together Forever</p>
       <p class="date">11 March 2026 • Avana Grand, Godagama, Colombo, Sri Lanka</p>
+      <h2 id="timer"></h2>
     </div>
   </div>
 </header>
-
-<!-- COUNTDOWN -->
-<h2 id="timer"></h2>
 
 <!-- SECOND SECTION IN LUXURY RED -->
 <section class="section section-red">
@@ -267,7 +325,7 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
 </section>
 
 <script>
-/* COUNTDOWN SIMPLE */
+/* COUNTDOWN WITH CINEMATIC EFFECT */
 const timer = document.getElementById("timer");
 const countDownDate = new Date("March 11, 2026 08:50:00").getTime();
 
@@ -316,10 +374,33 @@ rsvpForm.addEventListener("submit", e=>{
     responseMsg.innerText="❌ Submission failed. Try again.";
   });
 });
+
+/* SPARKLE CANVAS */
+const canvas=document.getElementById('sparkleCanvas');
+const ctx=canvas.getContext('2d');
+canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+const sparkles=[];
+for(let j=0;j<60;j++){
+  sparkles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*2+1, dx:(Math.random()-0.5)*0.5, dy:(Math.random()-0.5)*0.5, opacity:Math.random()});
+}
+function drawSparkles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let s of sparkles){
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,215,0,${s.opacity})`;
+    ctx.fill();
+    s.x+=s.dx; s.y+=s.dy;
+    if(s.x<0||s.x>canvas.width) s.dx*=-1;
+    if(s.y<0||s.y>canvas.height) s.dy*=-1;
+    s.opacity+=(Math.random()-0.5)*0.05;
+    if(s.opacity>1) s.opacity=1; if(s.opacity<0) s.opacity=0;
+  }
+  requestAnimationFrame(drawSparkles);
+}
+drawSparkles();
+window.addEventListener('resize',()=>{canvas.width=window.innerWidth; canvas.height=window.innerHeight;});
 </script>
 
 </body>
 </html>
-
-
-
