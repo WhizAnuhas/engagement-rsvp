@@ -11,9 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* =============================================
-   COLORS
-============================================= */
 :root{
   --luxury-red: #FF1A1A;
   --luxury-gold: #FFD700;
@@ -21,9 +18,7 @@
   --luxury-white: #F5F5F5;
 }
 
-/* =============================================
-   GLOBAL
-============================================= */
+/* GLOBAL */
 html{ scroll-behavior:smooth; }
 body{
   margin:0;
@@ -34,9 +29,7 @@ body{
 h1,h2,h3{ font-family:'Playfair Display', serif; margin:0; font-weight:700; }
 button{ font-family:'Poppins', sans-serif; cursor:pointer; }
 
-/* =============================================
-   HERO SECTION
-============================================= */
+/* HERO SECTION */
 .hero-luxury {
   height:100vh;
   background:
@@ -46,17 +39,6 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   justify-content:center;
   align-items:center;
   position:relative;
-  overflow:hidden;
-}
-
-#sparkleCanvas{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-  z-index:1;
 }
 
 .hero-overlay{
@@ -65,17 +47,12 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   z-index:2;
 }
 
-/* HERO FRAME */
 .hero-frame{
   display:inline-block;
   padding:50px 70px;
   border:4px solid var(--luxury-gold);
   border-radius:40px;
-  box-shadow: 0 0 50px rgba(255,215,0,0.5);
   background: rgba(0,0,0,0.4);
-  animation: glow 3s ease-in-out infinite alternate;
-  position:relative;
-  z-index:3;
 }
 
 .hero-frame h1{
@@ -83,8 +60,6 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   color:var(--luxury-red);
   margin-bottom:12px;
   letter-spacing:4px;
-  text-shadow: 0 0 15px rgba(255,26,26,0.7), 0 0 30px rgba(255,26,26,0.5);
-  animation: shimmer 4s infinite;
 }
 
 .hero-frame .tagline{
@@ -102,109 +77,34 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   padding:10px 30px;
   border:1.5px solid var(--luxury-gold);
   border-radius:30px;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
-@keyframes shimmer {
-  0% { text-shadow: 0 0 15px rgba(255,26,26,0.7), 0 0 30px rgba(255,26,26,0.5); }
-  50% { text-shadow: 0 0 25px var(--luxury-red), 0 0 50px rgba(255,26,26,0.7); }
-  100% { text-shadow: 0 0 15px rgba(255,26,26,0.7), 0 0 30px rgba(255,26,26,0.5); }
-}
-
-@keyframes glow {
-  0% { box-shadow: 0 0 40px rgba(255,215,0,0.3); }
-  50% { box-shadow: 0 0 70px rgba(255,215,0,0.6); }
-  100% { box-shadow: 0 0 40px rgba(255,215,0,0.3); }
-}
-
-/* =============================================
-   COUNTDOWN - FULL LUXURY GLOW
-============================================= */
-#timer{
-  font-size:48px;
-  color: var(--luxury-red);
-  text-align:center;
-  margin:40px auto;
-  font-weight:700;
-  letter-spacing:2px;
-  display: inline-block;
-  padding: 25px 50px;
-  border-radius: 35px;
-  border: 2px solid var(--luxury-gold);
-  background: rgba(0,0,0,0.4);
-  box-shadow:
-    0 0 20px rgba(255,215,0,0.4),
-    0 0 50px rgba(255,26,26,0.4),
-    0 0 80px rgba(255,215,0,0.2);
-  animation: glowPulse 3s ease-in-out infinite alternate;
-  text-shadow:
-    0 0 10px #FF1A1A,
-    0 0 20px #FF1A1A,
-    0 0 30px #FFD700;
-}
-
-/* Glowing animation for the whole countdown */
-@keyframes glowPulse {
-  0% {
-    box-shadow:
-      0 0 20px rgba(255,215,0,0.4),
-      0 0 50px rgba(255,26,26,0.4),
-      0 0 80px rgba(255,215,0,0.2);
-    transform: scale(1);
-  }
-  50% {
-    box-shadow:
-      0 0 40px rgba(255,215,0,0.6),
-      0 0 80px rgba(255,26,26,0.6),
-      0 0 120px rgba(255,215,0,0.4);
-    transform: scale(1.05);
-  }
-  100% {
-    box-shadow:
-      0 0 20px rgba(255,215,0,0.4),
-      0 0 50px rgba(255,26,26,0.4),
-      0 0 80px rgba(255,215,0,0.2);
-    transform: scale(1);
-  }
-}
-
-/* Glowing seconds */
-#timer .seconds {
+/* COUNTDOWN SIMPLE CENTERED */
+#timer {
+  font-size:64px;
   color: var(--luxury-gold);
-  text-shadow:
-    0 0 5px #FFD700,
-    0 0 10px #FFD700,
-    0 0 20px #FFB400,
-    0 0 30px #FFD700;
-  animation: pulseSeconds 1s infinite alternate;
+  text-align:center;
+  margin:80px auto;
+  font-weight:700;
 }
 
-@keyframes pulseSeconds {
-  0% {
-    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 20px #FFB400, 0 0 30px #FFD700;
-    transform: scale(1);
-  }
-  50% {
-    text-shadow: 0 0 15px #FFD700, 0 0 25px #FFD700, 0 0 35px #FFB400, 0 0 50px #FFD700;
-    transform: scale(1.1);
-  }
-  100% {
-    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 20px #FFB400, 0 0 30px #FFD700;
-    transform: scale(1);
-  }
+#timer .seconds {
+  color: var(--luxury-red);
 }
 
-/* =============================================
-   SECTIONS
-============================================= */
+/* SECTIONS */
 .section{
   padding:80px 20px;
   text-align:center;
 }
 
+.section-red{
+  background: var(--luxury-red);
+  color: var(--luxury-gold);
+}
+
 .section-title{
   font-size:40px;
-  color:var(--luxury-red);
   font-weight:700;
 }
 
@@ -215,9 +115,7 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   margin:16px auto 40px;
 }
 
-/* =============================================
-   CARDS
-============================================= */
+/* CARDS */
 .card{
   max-width:500px;
   margin:24px auto;
@@ -235,9 +133,7 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   margin-bottom:12px;
 }
 
-/* =============================================
-   GALLERY
-============================================= */
+/* GALLERY */
 .slider{
   max-width:950px;
   margin:auto;
@@ -255,9 +151,7 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   box-shadow:0 30px 60px rgba(0,0,0,0.6);
 }
 
-/* =============================================
-   RSVP
-============================================= */
+/* RSVP */
 .rsvp{
   max-width:500px;
   margin:auto;
@@ -299,13 +193,12 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
 }
 .btn-royal:hover{ transform: translateY(-3px); }
 
-/* =============================================
-   RESPONSIVE
-============================================= */
+/* RESPONSIVE */
 @media(max-width:600px){
   .hero-frame h1{ font-size:50px; }
   .hero-frame .tagline{ font-size:18px; }
   .hero-frame .date{ font-size:16px; padding:6px 20px; }
+  #timer { font-size:48px; }
 }
 </style>
 </head>
@@ -314,7 +207,6 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
 
 <!-- HERO -->
 <header class="hero-luxury">
-  <canvas id="sparkleCanvas"></canvas>
   <div class="hero-overlay">
     <div class="hero-frame">
       <h1>Anuhas & Sofiya</h1>
@@ -327,30 +219,9 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
 <!-- COUNTDOWN -->
 <h2 id="timer"></h2>
 
-<!-- STORY / SHLOKA -->
-<section class="card shloka-card">
-  <h2>॥ श्री गणेशाय नमः ॥</h2>
-  <p class="shloka">
-    वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>
-    निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥
-  </p>
-  <p class="shloka-meaning">
-    With divine blessings, we invite you to celebrate our sacred union.
-  </p>
-</section>
-
-<!-- GALLERY -->
-<section class="section">
-  <h2 class="section-title">Memories</h2>
-  <div class="gold-divider"></div>
-  <div class="slider">
-    <img id="slide" src="https://picsum.photos/1200/600?1">
-  </div>
-</section>
-
-<!-- EVENTS -->
-<section class="section">
-  <h2 class="section-title">Wedding Events</h2>
+<!-- SECOND SECTION IN LUXURY RED -->
+<section class="section section-red">
+  <h2 class="section-title">Memories & Events</h2>
   <div class="gold-divider"></div>
 
   <div class="card">
@@ -366,8 +237,17 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
   </div>
 </section>
 
+<!-- GALLERY -->
+<section class="section section-red">
+  <h2 class="section-title">Gallery</h2>
+  <div class="gold-divider"></div>
+  <div class="slider">
+    <img id="slide" src="https://picsum.photos/1200/600?1">
+  </div>
+</section>
+
 <!-- RSVP -->
-<section class="section">
+<section class="section section-red">
   <h2 class="section-title">RSVP</h2>
   <div class="gold-divider"></div>
 
@@ -375,7 +255,7 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
     <input id="name" placeholder="Your Name" required>
     <input id="phone" placeholder="Phone Number" required>
     <input id="guests" type="number" min="1" placeholder="Guests">
-    <textarea id="message" placeholder="Blessings / Message"></textarea>
+    <textarea id="message" placeholder="Message / Blessings"></textarea>
     <select id="attendance" required>
       <option value="">Will you attend?</option>
       <option value="Yes">Yes</option>
@@ -387,7 +267,7 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
 </section>
 
 <script>
-/* COUNTDOWN WITH SECONDS */
+/* COUNTDOWN SIMPLE */
 const timer = document.getElementById("timer");
 const countDownDate = new Date("March 11, 2026 08:50:00").getTime();
 
@@ -405,9 +285,7 @@ setInterval(() => {
   const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const secs = Math.floor((distance % (1000 * 60)) / 1000);
 
-  timer.innerHTML = `
-    ${days}d : ${hours}h : ${mins}m : <span class="seconds">${secs}s</span>
-  `;
+  timer.innerHTML = `${days}d : ${hours}h : ${mins}m : <span class="seconds">${secs}s</span>`;
 }, 1000);
 
 /* SLIDER */
@@ -438,35 +316,10 @@ rsvpForm.addEventListener("submit", e=>{
     responseMsg.innerText="❌ Submission failed. Try again.";
   });
 });
-
-/* SPARKLE CANVAS */
-const canvas=document.getElementById('sparkleCanvas');
-const ctx=canvas.getContext('2d');
-canvas.width=window.innerWidth; canvas.height=window.innerHeight;
-const sparkles=[];
-for(let j=0;j<60;j++){
-  sparkles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*2+1, dx:(Math.random()-0.5)*0.5, dy:(Math.random()-0.5)*0.5, opacity:Math.random()});
-}
-function drawSparkles(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  for(let s of sparkles){
-    ctx.beginPath();
-    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-    ctx.fillStyle=`rgba(255,215,0,${s.opacity})`;
-    ctx.fill();
-    s.x+=s.dx; s.y+=s.dy;
-    if(s.x<0||s.x>canvas.width) s.dx*=-1;
-    if(s.y<0||s.y>canvas.height) s.dy*=-1;
-    s.opacity+=(Math.random()-0.5)*0.05;
-    if(s.opacity>1) s.opacity=1; if(s.opacity<0) s.opacity=0;
-  }
-  requestAnimationFrame(drawSparkles);
-}
-drawSparkles();
-window.addEventListener('resize',()=>{canvas.width=window.innerWidth; canvas.height=window.innerHeight;});
 </script>
 
 </body>
 </html>
+
 
 
