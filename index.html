@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atharva & Anubhuti | Royal Wedding Invitation</title>
+
+<!-- GOOGLE FONTS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* =====================================================
+   GLOBAL + THEME
+===================================================== */
+html{ scroll-behavior:smooth; }
+
+body{
+  margin:0;
+  font-family:'Poppins', sans-serif;
+  background:#FFF6E5;
+  color:#3b1a1f;
+}
+
+:root{
+  --royal-red:#7A0C14;
+  --royal-gold:#C9A24D;
+  --ivory:#FFF6E5;
+  --wine:#2A0A0E;
+}
+
+h1,h2,h3{
+  font-family:'Playfair Display', serif;
+  margin:0;
+}
+
+button{ font-family:'Poppins', sans-serif; }
+
+/* =====================================================
+   HERO
+===================================================== */
+.hero{
+  height:100vh;
+  background:
+    linear-gradient(#2A0A0ECC,#2A0A0ECC),
+    url("https://images.unsplash.com/photo-1606214811115-9c1c9eaf6c23?auto=format&fit=crop&w=1600&q=80")
+    center/cover no-repeat;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+  color:white;
+}
+
+.hero h1{
+  font-size:64px;
+  letter-spacing:3px;
+  color:var(--royal-gold);
+}
+
+.tagline{
+  margin:14px 0;
+  font-size:22px;
+  letter-spacing:4px;
+}
+
+.date{
+  margin-top:20px;
+  padding:10px 28px;
+  border:1.5px solid var(--royal-gold);
+  border-radius:40px;
+  color:var(--royal-gold);
+  font-weight:500;
+}
+
+/* =====================================================
+   COUNTDOWN
+===================================================== */
+#timer{
+  font-size:28px;
+  color:var(--royal-red);
+  text-align:center;
+  margin:30px 0;
+}
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+.section{
+  padding:70px 20px;
+  text-align:center;
+}
+
+.section-title{
+  font-size:36px;
+  color:var(--royal-red);
+}
+
+.gold-divider{
+  width:90px;
+  height:3px;
+  background:linear-gradient(90deg,transparent,var(--royal-gold),transparent);
+  margin:14px auto 30px;
+}
+
+/* =====================================================
+   CARDS
+===================================================== */
+.card{
+  max-width:440px;
+  margin:22px auto;
+  padding:26px;
+  background:white;
+  border-radius:22px;
+  border:1.5px solid var(--royal-gold);
+  box-shadow:0 18px 35px rgba(0,0,0,.15);
+}
+
+.card h3{
+  color:var(--royal-red);
+}
+
+/* =====================================================
+   GALLERY
+===================================================== */
+.slider{
+  max-width:900px;
+  margin:auto;
+}
+
+.slider img{
+  width:100%;
+  border-radius:24px;
+  box-shadow:0 20px 40px rgba(0,0,0,.18);
+}
+
+/* =====================================================
+   RSVP
+===================================================== */
+.rsvp{
+  max-width:440px;
+  margin:auto;
+  background:white;
+  padding:28px;
+  border-radius:24px;
+  border:1px solid var(--royal-gold);
+  box-shadow:0 15px 30px rgba(0,0,0,.12);
+}
+
+.rsvp input,
+.rsvp select,
+.rsvp textarea{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:14px;
+}
+
+.rsvp textarea{ resize:none; min-height:80px; }
+
+.btn-royal{
+  margin-top:12px;
+  padding:14px;
+  border:none;
+  border-radius:40px;
+  font-size:16px;
+  cursor:pointer;
+  color:#3b1a1f;
+  background:linear-gradient(135deg,#E7C873,var(--royal-gold),#A88434);
+}
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+.dark{
+  background:var(--wine);
+  color:#eee;
+}
+
+.dark .card,
+.dark .rsvp{
+  background:#3a1217;
+  color:white;
+}
+
+.dark input,
+.dark textarea,
+.dark select{
+  background:#2A0A0E;
+  color:white;
+  border:1px solid #7a3b42;
+}
+
+/* =====================================================
+   FIXED BUTTON
+===================================================== */
+#darkToggle{
+  position:fixed;
+  top:15px;
+  right:15px;
+  z-index:999;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+@media(max-width:600px){
+  .hero h1{ font-size:44px; }
+}
+</style>
+</head>
+
+<body>
+
+<button id="darkToggle">🌙</button>
+
+<!-- HERO -->
+<header class="hero">
+  <h1>Atharva & Anubhuti</h1>
+  <p class="tagline">Together Forever</p>
+  <p class="date">16 March 2026 • Akola</p>
+</header>
+
+<h2 id="timer"></h2>
+
+<!-- STORY -->
+<section class="card shloka-card">
+  <h2>॥ श्री गणेशाय नमः ॥</h2>
+
+  <p class="shloka">
+    वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>
+    निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥
+  </p>
+
+  <p class="shloka-meaning">
+    With divine blessings, we invite you to celebrate our sacred union.
+  </p>
+</section>
+
+<!-- GALLERY -->
+<section class="section">
+  <h2 class="section-title">Memories</h2>
+  <div class="gold-divider"></div>
+  <div class="slider">
+    <img id="slide" src="https://picsum.photos/1200/600?1">
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="section">
+  <h2 class="section-title">Wedding Events</h2>
+  <div class="gold-divider"></div>
+
+  <div class="card">
+    <h3>Sangeet Night</h3>
+    <p>15 March • 7:00 PM</p>
+    <p>Ganesh Krupa Wedding Hall</p>
+  </div>
+
+  <div class="card">
+    <h3>Wedding Ceremony</h3>
+    <p>16 March • 08:50 AM</p>
+    <p>Ganesh Krupa Wedding Hall</p>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="section">
+  <h2 class="section-title">Venue</h2>
+  <div class="gold-divider"></div>
+
+  <iframe
+    width="90%"
+    height="300"
+    style="border-radius:18px; border:0"
+    loading="lazy"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3799.1573511957607!2d77.02448511527513!3d20.683229602147765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd72de5f6dd5c83%3A0x253d9c734dbb3dfa!2sGanesh%20Krupa%20Lawns%20and%20Hall!5e0!3m2!1sen!2sin!4v1704473890123!5m2!1sen!2sin"
+    allowfullscreen>
+  </iframe>
+
+  <p style="margin-top:8px; font-size:14px; color:var(--royal-red);">
+    📍 Ganesh Krupa Lawns & Hall, Akola
+  </p>
+</section>
+
+
+<!-- RSVP -->
+<section class="section">
+  <h2 class="section-title">RSVP</h2>
+  <div class="gold-divider"></div>
+
+  <form id="rsvpForm" class="rsvp">
+    <input id="name" placeholder="Your Name" required>
+    <input id="phone" placeholder="Phone Number" required>
+    <input id="guests" type="number" min="1" placeholder="Guests">
+    <textarea id="message" placeholder="Blessings / Message"></textarea>
+    <select id="attendance" required>
+      <option value="">Will you attend?</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+    <button class="btn-royal" type="submit">Submit RSVP</button>
+  </form>
+  <p id="responseMsg"></p>
+</section>
+
+<script>
+/* COUNTDOWN */
+const countDownDate = new Date("March 16, 2026 08:50:00").getTime();
+setInterval(()=>{
+  const now = new Date().getTime();
+  const d = countDownDate - now;
+  if(d < 0){
+    timer.innerHTML = "🎉 Wedding Day!";
+    return;
+  }
+  timer.innerHTML =
+    Math.floor(d/(1000*60*60*24))+"d "+
+    Math.floor((d%(1000*60*60*24))/(1000*60*60))+"h "+
+    Math.floor((d%(1000*60*60))/(1000*60))+"m ";
+},1000);
+
+/* SLIDER */
+const imgs=[
+  "https://picsum.photos/1200/600?1",
+  "https://picsum.photos/1200/600?2",
+  "https://picsum.photos/1200/600?3"
+];
+let i=0;
+setInterval(()=>{ i=(i+1)%imgs.length; slide.src=imgs[i]; },3000);
+
+/* DARK MODE */
+darkToggle.onclick=()=>document.body.classList.toggle("dark");
+
+/* RSVP */
+rsvpForm.addEventListener("submit",e=>{
+  e.preventDefault();
+  fetch("https://script.google.com/macros/s/AKfycbz_bkRJ7Gkqe5Sqo6L8PBd2EeifPyQR3UOVrRjle3TSpwwbjPGMxdBadie9FujSBagt/exec",{
+    method:"POST",
+    body:JSON.stringify({
+      name: document.getElementById("name").value,
+      phone:phone.value,
+      guests:guests.value,
+      message:message.value,
+      attendance:attendance.value
+    })
+  }).then(()=>{
+    responseMsg.innerText="🎉 RSVP Submitted!";
+    rsvpForm.reset();
+  }).catch(()=>{
+    responseMsg.innerText="❌ Submission failed";
+  });
+});
+</script>
+
+</body>
+</html>
