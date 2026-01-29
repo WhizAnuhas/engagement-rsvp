@@ -19,99 +19,296 @@
 }
 
 /* GLOBAL */
-html, body { margin:0; padding:0; font-family:'Poppins', sans-serif; scroll-behavior:smooth; background:var(--luxury-black); color:var(--luxury-gold); }
-h1,h2,h3,h4,h5{ font-family:'Playfair Display', serif; margin:0; font-weight:700; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  font-family:'Poppins', sans-serif;
+  background:var(--luxury-black);
+  color:var(--luxury-gold);
+  overflow-x:hidden;
+}
+h1,h2,h3,h5{ font-family:'Playfair Display', serif; margin:0; font-weight:700; }
 button{ font-family:'Poppins', sans-serif; cursor:pointer; }
-.page { display:none; min-height:100vh; padding:20px; text-align:center; }
-.page.active { display:block; }
 
-/* HERO PAGE */
+/* PAGE WRAPPER */
+.page{ display:none; min-height:100vh; padding:60px 20px; box-sizing:border-box; position:relative; }
+.page.active{ display:block; }
+
+/* HERO SECTION */
 .hero-luxury {
   height:100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url("https://images.unsplash.com/photo-1613479874939-51402bfb47c4?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
   display:flex;
   justify-content:center;
   align-items:center;
   position:relative;
   overflow:hidden;
-  background:linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-    url("https://images.unsplash.com/photo-1613479874939-51402bfb47c4?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
 }
 
 #sparkleCanvas{
-  position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1;
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:1;
+}
+
+.hero-overlay{
+  text-align:center;
+  position:relative;
+  z-index:2;
 }
 
 .hero-frame{
-  display:inline-block; padding:40px 50px; border:4px solid var(--luxury-gold); border-radius:35px; background: rgba(0,0,0,0.4);
-  box-shadow:0 0 50px rgba(255,215,0,0.5); animation: glow 3s ease-in-out infinite alternate; position:relative; z-index:3;
+  display:inline-block;
+  padding:50px 70px;
+  border:4px solid var(--luxury-gold);
+  border-radius:40px;
+  background: rgba(0,0,0,0.4);
+  box-shadow: 0 0 50px rgba(255,215,0,0.5);
+  animation: glow 3s ease-in-out infinite alternate;
+  position:relative;
+  z-index:3;
 }
 
 .hero-frame h1{
-  font-size:50px; color:var(--luxury-red); margin-bottom:12px; letter-spacing:3px; text-shadow:0 0 15px rgba(255,26,26,0.7),0 0 30px rgba(255,26,26,0.5); animation: shimmer 4s infinite;
+  font-size:72px;
+  color:var(--luxury-red);
+  margin-bottom:12px;
+  letter-spacing:4px;
+  text-shadow: 0 0 15px rgba(255,26,26,0.7), 0 0 30px rgba(255,26,26,0.5);
+  animation: shimmer 4s infinite;
 }
 
-.hero-frame .tagline{ font-size:20px; color:#FFDD66; margin-bottom:15px; letter-spacing:2px; font-style:italic; }
-.hero-frame .date{ font-size:16px; color:var(--luxury-gold); font-weight:600; padding:8px 20px; border:1.5px solid var(--luxury-gold); border-radius:25px; margin-bottom:15px; }
-#timer{ font-size:28px; color: var(--luxury-red); font-weight:700; padding:12px 25px; border-radius:25px; border:2px solid var(--luxury-gold); background: rgba(0,0,0,0.4); box-shadow:0 0 20px rgba(255,215,0,0.4),0 0 50px rgba(255,26,26,0.4); margin:0 auto 20px; }
+.hero-frame .tagline{
+  font-size:24px;
+  color:#FFDD66;
+  margin-bottom:20px;
+  letter-spacing:3px;
+  font-style:italic;
+}
+
+.hero-frame .date{
+  font-size:20px;
+  color:var(--luxury-gold);
+  font-weight:600;
+  padding:10px 30px;
+  border:1.5px solid var(--luxury-gold);
+  border-radius:30px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  margin-bottom:20px;
+}
+
+/* CINEMATIC COUNTDOWN */
+#timer {
+  font-size:48px;
+  color: var(--luxury-red);
+  font-weight:700;
+  display: inline-block;
+  padding: 20px 40px;
+  border-radius: 35px;
+  border: 2px solid var(--luxury-gold);
+  background: rgba(0,0,0,0.4);
+  box-shadow:
+    0 0 20px rgba(255,215,0,0.4),
+    0 0 50px rgba(255,26,26,0.4),
+    0 0 80px rgba(255,215,0,0.2);
+  text-shadow:
+    0 0 10px #FF1A1A,
+    0 0 20px #FF1A1A,
+    0 0 30px #FFD700;
+  animation: glowPulse 3s ease-in-out infinite alternate;
+  margin:20px auto 0;
+}
+
+#timer .seconds {
+  color: var(--luxury-gold);
+  text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+  animation: pulseSeconds 1s infinite alternate;
+}
+
+/* SHIMMER & GLOW ANIMATIONS */
+@keyframes shimmer {
+  0% { text-shadow: 0 0 15px rgba(255,26,26,0.7), 0 0 30px rgba(255,26,26,0.5); }
+  50% { text-shadow: 0 0 25px var(--luxury-red), 0 0 50px rgba(255,26,26,0.7); }
+  100% { text-shadow: 0 0 15px rgba(255,26,26,0.7), 0 0 30px rgba(255,26,26,0.5); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 40px rgba(255,215,0,0.3); }
+  50% { box-shadow: 0 0 70px rgba(255,215,0,0.6); }
+  100% { box-shadow: 0 0 40px rgba(255,215,0,0.3); }
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 20px rgba(255,215,0,0.4),0 0 50px rgba(255,26,26,0.4),0 0 80px rgba(255,215,0,0.2); transform: scale(1); }
+  50% { box-shadow: 0 0 40px rgba(255,215,0,0.6),0 0 80px rgba(255,26,26,0.6),0 0 120px rgba(255,215,0,0.4); transform: scale(1.05); }
+  100% { box-shadow: 0 0 20px rgba(255,215,0,0.4),0 0 50px rgba(255,26,26,0.4),0 0 80px rgba(255,215,0,0.2); transform: scale(1); }
+}
+
+@keyframes pulseSeconds {
+  0% { text-shadow: 0 0 5px #FFD700,0 0 10px #FFD700; transform: scale(1); }
+  50% { text-shadow: 0 0 15px #FFD700,0 0 25px #FFD700; transform: scale(1.1); }
+  100% { text-shadow: 0 0 5px #FFD700,0 0 10px #FFD700; transform: scale(1); }
+}
+
+/* PAGE 2 INVITATION WORDING */
+.invitation-box {
+  background:rgba(255,255,255,0.85);
+  padding:30px 20px;
+  border-radius:30px;
+  max-width:500px;
+  margin:40px auto;
+  box-shadow:0 20px 40px rgba(0,0,0,0.2);
+  font-family:'Playfair Display', serif;
+  text-align:center;
+}
+.invitation-box p{ font-size:18px; color:#333; line-height:1.6; margin-bottom:20px; }
+.invitation-box p strong{ color:var(--luxury-red); }
+.nav-btn{
+  margin-top:20px;
+  padding:14px 25px;
+  border:none;
+  border-radius:50px;
+  background:var(--luxury-red);
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  transition: transform 0.3s;
+}
+.nav-btn:hover{ transform:translateY(-3px); }
 
 /* SECTIONS */
-.section-title{ font-size:28px; font-weight:700; margin-bottom:10px; }
-.gold-divider{ width:80px; height:3px; background:linear-gradient(90deg,transparent,var(--luxury-gold),transparent); margin:16px auto 30px; }
-.card{ max-width:400px; margin:20px auto; padding:20px; background:#1a1a1a; border-radius:20px; border:2px solid var(--luxury-gold); box-shadow:0 15px 30px rgba(0,0,0,0.3); color:var(--luxury-gold); }
-.card h5{ color:var(--luxury-white); margin-bottom:12px; font-size:18px; opacity:0; transform:translateY(20px); transition:all 0.8s ease-in-out; text-shadow:0 0 10px rgba(255,255,255,0.6),0 0 20px rgba(255,255,255,0.4); }
+.section{
+  padding:80px 20px;
+  text-align:center;
+}
+.section-red{ background: var(--luxury-red); color: var(--luxury-gold); }
+.section-title{ font-size:40px; font-weight:700; }
+.gold-divider{
+  width:100px; height:3px;
+  background:linear-gradient(90deg,transparent,var(--luxury-gold),transparent);
+  margin:16px auto 40px;
+}
 
-/* Active class for fade-in */
-.card h5.show{ opacity:1; transform:translateY(0); }
+/* CARDS / AGENDA */
+.card{
+  max-width:500px;
+  margin:24px auto;
+  padding:30px;
+  background:#1a1a1a;
+  border-radius:25px;
+  border:2px solid var(--luxury-gold);
+  box-shadow:0 20px 40px rgba(0,0,0,0.3);
+  color:var(--luxury-gold);
+}
+.agenda-item{
+  opacity:0;
+  transform:translateY(20px);
+  color: var(--luxury-white);
+  text-shadow:0 0 10px rgba(255,255,255,0.6),0 0 20px rgba(255,255,255,0.4);
+  transition: all 0.8s ease-in-out;
+  margin-bottom:12px; font-size:20px;
+}
+.agenda-item.show{
+  opacity:1; transform:translateY(0);
+}
+.agenda-item.show::after{
+  content:'';
+  display:block; height:2px;
+  width:100%;
+  background: linear-gradient(90deg, transparent, var(--luxury-white), transparent);
+  margin-top:4px;
+  animation: glowPulse 1.5s ease-in-out infinite alternate;
+}
 
-/* SLIDER */
-.slider img{ width:100%; border-radius:20px; box-shadow:0 15px 30px rgba(0,0,0,0.4); transition: transform 0.5s ease, box-shadow 0.5s ease; }
-.slider img:hover{ transform:scale(1.02); box-shadow:0 20px 40px rgba(0,0,0,0.6); }
+/* GALLERY */
+.slider{ max-width:950px; margin:auto; }
+.slider img{
+  width:100%;
+  border-radius:28px;
+  box-shadow:0 25px 50px rgba(0,0,0,0.4);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+.slider img:hover{
+  transform: scale(1.02);
+  box-shadow:0 30px 60px rgba(0,0,0,0.6);
+}
 
 /* RSVP */
-.rsvp input, .rsvp select, .rsvp textarea{ width:100%; padding:12px; margin:8px 0; border-radius:12px; border:1px solid #555; background:#0d0d0d; color:var(--luxury-gold); font-size:15px; }
-.rsvp textarea{ min-height:80px; resize:none; }
-
-/* BUTTONS */
-.nav-btn{ padding:12px 20px; margin:10px; border:none; border-radius:30px; background:linear-gradient(135deg,#FFD700,#FFB400,#FFD700); color:#0d0d0d; font-weight:700; cursor:pointer; box-shadow:0 6px 15px rgba(0,0,0,0.4); transition: transform 0.3s; }
-.nav-btn:hover{ transform: translateY(-3px); }
-
-/* KEYFRAMES */
-@keyframes shimmer{ 0%{ text-shadow:0 0 15px rgba(255,26,26,0.7),0 0 30px rgba(255,26,26,0.5);} 50%{ text-shadow:0 0 25px var(--luxury-red),0 0 50px rgba(255,26,26,0.7);} 100%{ text-shadow:0 0 15px rgba(255,26,26,0.7),0 0 30px rgba(255,26,26,0.5);} }
-@keyframes glow{0%{box-shadow:0 0 40px rgba(255,215,0,0.3);}50%{box-shadow:0 0 70px rgba(255,215,0,0.6);}100%{box-shadow:0 0 40px rgba(255,215,0,0.3);}}
+.rsvp{
+  max-width:500px; margin:auto;
+  background:#1a1a1a; padding:32px;
+  border-radius:25px; border:2px solid var(--luxury-gold);
+  box-shadow:0 20px 40px rgba(0,0,0,0.3);
+  color:var(--luxury-gold);
+}
+.rsvp input, .rsvp select, .rsvp textarea{
+  width:100%; padding:14px; margin:10px 0;
+  border-radius:12px; border:1px solid #555;
+  background:#0d0d0d; color:var(--luxury-gold); font-size:15px;
+}
+.rsvp textarea{ resize:none; min-height:100px; }
+.btn-royal{
+  margin-top:14px; padding:16px;
+  border:none; border-radius:50px; font-size:18px;
+  cursor:pointer; color:var(--luxury-black);
+  background:linear-gradient(135deg,#FFD700,#FFB400,#FFD700);
+  font-weight:700; box-shadow:0 6px 20px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease;
+}
+.btn-royal:hover{ transform: translateY(-3px); }
 
 /* RESPONSIVE */
 @media(max-width:600px){
-  .hero-frame h1{ font-size:36px; }
-  .hero-frame .tagline{ font-size:16px; }
-  .hero-frame .date{ font-size:14px; padding:5px 15px; }
-  #timer{ font-size:24px; padding:10px 20px; }
-  .section-title{ font-size:22px; }
-  .card{ padding:15px; max-width:90%; }
-  .card h5{ font-size:16px; }
+  .hero-frame h1{ font-size:50px; }
+  .hero-frame .tagline{ font-size:18px; }
+  .hero-frame .date{ font-size:16px; padding:6px 20px; }
+  #timer { font-size:32px; padding:15px 30px; }
+  .agenda-item{ font-size:16px; }
+  .invitation-box{ padding:20px 15px; font-size:16px; }
 }
 </style>
 </head>
+
 <body>
 
 <!-- PAGE 1: HERO -->
 <div class="page active" id="page1">
   <header class="hero-luxury">
     <canvas id="sparkleCanvas"></canvas>
-    <div class="hero-frame">
-      <h1>Anuhas & Sofiya</h1>
-      <p class="tagline">Together Forever</p>
-      <p class="date">11 March 2026 • Avana Grand, Godagama, Colombo, Sri Lanka</p>
-      <h2 id="timer"></h2>
-      <button class="nav-btn" onclick="showPage(2)">View Event Agenda</button>
+    <div class="hero-overlay">
+      <div class="hero-frame">
+        <h1>Anuhas & Sofiya</h1>
+        <p class="tagline">Together Forever</p>
+        <p class="date">11 March 2026 • Avana Grand, Godagama, Colombo, Sri Lanka</p>
+        <h2 id="timer"></h2>
+        <button class="nav-btn" onclick="showPage(2)">View Invitation</button>
+      </div>
     </div>
   </header>
 </div>
 
-<!-- PAGE 2: AGENDA -->
-<div class="page" id="page2">
+<!-- PAGE 2: INVITATION -->
+<div class="page" id="page2" style="background:url('https://images.unsplash.com/photo-1602524815135-5c96f0b2a4f7?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; background-size:cover;">
+  <div class="invitation-box">
+    <p>By the grace of God and with the joyful blessings of our families, we are delighted to invite you to join us in celebrating the engagement of our beloved <strong>Sofiya</strong> and <strong>Anuhas</strong>.</p>
+    <p>Your presence will make this special occasion even more memorable as we come together to share in the love, happiness, and promise of their future together.</p>
+    <p><strong>Date:</strong> 11 March 2026<br><strong>Time:</strong> 6 P.M.<br><strong>Venue:</strong> Avana Grand, Godagama, Colombo</p>
+    <p>We look forward to celebrating this joyous moment with you and sincerely hope you can join us for an evening of love, laughter, and cherished memories.</p>
+    <p style="font-style:italic;">With love and gratitude,<br>[Family Name of Bride] & [Family Name of Groom]</p>
+    <button class="nav-btn" onclick="showPage(3)">View Event Agenda</button>
+  </div>
+</div>
+
+<!-- PAGE 3: EVENT AGENDA -->
+<section class="page section-red" id="page3">
   <h2 class="section-title">Event Agenda</h2>
   <div class="gold-divider"></div>
-  <div class="card">
+  <div class="card" id="agendaCard">
     <h5 class="agenda-item">6:00 PM – 6:30 PM Guests Arrival & Welcome Drinks / Snacks</h5>
     <h5 class="agenda-item">6:30 PM – 6:45 PM Opening & Introduction by Host / MC</h5>
     <h5 class="agenda-item">6:45 PM – 7:15 PM Engagement Ceremony (Ring Exchange & Blessings)</h5>
@@ -120,22 +317,23 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
     <h5 class="agenda-item">8:30 PM – 10:00 PM Dinner / Refreshments</h5>
     <h5 class="agenda-item">10:00 PM – 10:30 PM Dance / Entertainment</h5>
     <h5 class="agenda-item">10:30 PM – 11:00 PM Closing & Thank You by Host / Couple</h5>
-    <button class="nav-btn" onclick="showPage(3)">View Gallery</button>
+    <p>Avana Grand, Godagama, Colombo, Sri Lanka</p>
+    <button class="nav-btn" onclick="showPage(4)">View Gallery</button>
   </div>
-</div>
+</section>
 
-<!-- PAGE 3: GALLERY -->
-<div class="page" id="page3">
+<!-- PAGE 4: GALLERY -->
+<section class="page section-red" id="page4">
   <h2 class="section-title">Gallery</h2>
   <div class="gold-divider"></div>
   <div class="slider">
     <img id="slide" src="https://picsum.photos/1200/600?1">
   </div>
-  <button class="nav-btn" onclick="showPage(4)">RSVP</button>
-</div>
+  <button class="nav-btn" onclick="showPage(5)">RSVP</button>
+</section>
 
-<!-- PAGE 4: RSVP -->
-<div class="page" id="page4">
+<!-- PAGE 5: RSVP -->
+<section class="page section-red" id="page5">
   <h2 class="section-title">RSVP</h2>
   <div class="gold-divider"></div>
   <form id="rsvpForm" class="rsvp">
@@ -151,82 +349,20 @@ button{ font-family:'Poppins', sans-serif; cursor:pointer; }
     <button class="btn-royal" type="submit">Submit RSVP</button>
   </form>
   <p id="responseMsg"></p>
-  <button class="nav-btn" onclick="showPage(1)">Back to Home</button>
-</div>
+</section>
 
 <script>
-/* PAGE NAVIGATION */
+// PAGE NAVIGATION
 function showPage(num){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page'+num).classList.add('active');
-
-  // Trigger agenda fade-in
-  if(num===2){
-    const items=document.querySelectorAll('.agenda-item');
-    items.forEach((item,index)=>setTimeout(()=>item.classList.add('show'),index*600));
-  }
 }
 
-/* COUNTDOWN */
+// COUNTDOWN
 const timer = document.getElementById("timer");
 const countDownDate = new Date("March 11, 2026 08:50:00").getTime();
 setInterval(() => {
-  const now=new Date().getTime();
-  const distance=countDownDate-now;
-  if(distance<0){timer.innerHTML="🎉 Wedding Day!"; return;}
-  const days=Math.floor(distance/(1000*60*60*24));
-  const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-  const mins=Math.floor((distance%(1000*60*60))/(1000*60));
-  const secs=Math.floor((distance%(1000*60))/1000);
-  timer.innerHTML=`${days}d : ${hours}h : ${mins}m : <span class="seconds">${secs}s</span>`;
-},1000);
-
-/* SLIDER */
-const imgs=["https://picsum.photos/1200/600?1","https://picsum.photos/1200/600?2","https://picsum.photos/1200/600?3"];
-let i=0;
-const slide=document.getElementById("slide");
-setInterval(()=>{i=(i+1)%imgs.length; slide.src=imgs[i];},3000);
-
-/* RSVP SUBMISSION */
-const rsvpForm=document.getElementById("rsvpForm");
-const responseMsg=document.getElementById("responseMsg");
-rsvpForm.addEventListener("submit",e=>{
-  e.preventDefault();
-  fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({
-      name:document.getElementById("name").value,
-      phone:document.getElementById("phone").value,
-      guests:document.getElementById("guests").value,
-      message:document.getElementById("message").value,
-      attendance:document.getElementById("attendance").value
-    })
-  }).then(()=>{responseMsg.innerText="🎉 RSVP Submitted Successfully!"; rsvpForm.reset();})
-  .catch(()=>{responseMsg.innerText="❌ Submission failed. Try again."});
-});
-
-/* SPARKLE CANVAS */
-const canvas=document.getElementById('sparkleCanvas');
-const ctx=canvas.getContext('2d');
-canvas.width=window.innerWidth; canvas.height=window.innerHeight;
-const sparkles=[];
-for(let j=0;j<60;j++){sparkles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5,opacity:Math.random()});}
-function drawSparkles(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  for(let s of sparkles){
-    ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fillStyle=`rgba(255,215,0,${s.opacity})`; ctx.fill();
-    s.x+=s.dx; s.y+=s.dy;
-    if(s.x<0||s.x>canvas.width) s.dx*=-1;
-    if(s.y<0||s.y>canvas.height) s.dy*=-1;
-    s.opacity+=(Math.random()-0.5)*0.05;
-    if(s.opacity>1) s.opacity=1; if(s.opacity<0) s.opacity=0;
-  }
-  requestAnimationFrame(drawSparkles);
-}
-drawSparkles();
-window.addEventListener('resize',()=>{canvas.width=window.innerWidth; canvas.height=window.innerHeight;});
-</script>
-</body>
-</html>
-
+  const now = new Date().getTime();
+  const distance = countDownDate - now;
+  if(distance < 
+::contentReference[oaicite:0]{index=0}
